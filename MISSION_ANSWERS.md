@@ -9,14 +9,6 @@
 4. **Không có Health Checks**: Ứng dụng thiếu các endpoint `/health` và `/ready` để giám sát trạng thái hoạt động khiến container không thể tự khởi động lại khi bị treo hoặc lỗi kết nối dependencies.
 5. **Tắt đột ngột (No Graceful Shutdown)**: Khi nhận lệnh ngắt tiến trình (SIGTERM), server tắt ngay lập tức làm ngắt quãng các requests đang được xử lý dở dang của người dùng.
 
-### Exercise 1.2: Is it production-ready?
-**Trả lời:** **Không.** Mặc dù ứng dụng khởi chạy thành công ở local và phản hồi được request đơn giản, nó hoàn toàn chưa sẵn sàng cho môi trường Production (production-ready) vì những lý do sau:
-- **Lộ bí mật hệ thống (Secrets Leak)**: API Key quan trọng bị ghi cứng vào code, tăng nguy cơ rò rỉ khi đưa lên kho chứa mã nguồn công khai (ví dụ: GitHub).
-- **Thiếu khả năng tự phục hồi (No Self-Healing)**: Hệ thống giám sát không thể kiểm tra ứng dụng có hoạt động bình thường hay không vì thiếu Health Check endpoints (`/health`, `/ready`).
-- **Nguy cơ mất mát dữ liệu**: Server bị ngắt đột ngột khi tắt, phá vỡ các kết nối và request đang xử lý dở dang của khách hàng.
-- **Cấu hình kém linh hoạt**: Sử dụng port cứng (`8000`) nên không thể chạy trên các Cloud Provider quản lý port động qua biến môi trường.
-- **Không thể phân tích lỗi diện rộng**: Sử dụng `print()` thông thường gây khó khăn cho việc quản lý log tập trung trên môi trường production.
-
 ### Exercise 1.3: Comparison table
 | Feature | Basic (Develop) | Advanced (Production) | Tại sao quan trọng? |
 |---------|---------|------------|----------------|
@@ -48,7 +40,7 @@
 
 ### Exercise 3.1: Railway deployment
 - **Public URL**: [https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/](https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/)
-- **Screenshot**: Bạn có thể chụp màn hình giao diện Railway Dashboard chạy thành công và lưu vào thư mục `screenshots/` của repo.
+- **Screenshot**: ![Screenshot](images/railway_deployment_success.png)
 
 ---
 
