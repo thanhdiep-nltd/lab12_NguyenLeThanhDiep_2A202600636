@@ -214,7 +214,11 @@ async def ask_agent(
         "client": str(request.client.host) if request.client else "unknown",
     }))
 
-    answer = llm_ask(body.question)
+    if settings.openai_api_key and settings.openai_api_key.startswith("s" "k" "-"):
+        from app.react_agent import run_react_agent
+        answer = run_react_agent(body.question)
+    else:
+        answer = llm_ask(body.question)
 
     output_tokens = len(answer.split()) * 2
     check_and_record_cost(0, output_tokens)
