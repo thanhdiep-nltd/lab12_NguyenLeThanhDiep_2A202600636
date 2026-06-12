@@ -78,7 +78,12 @@ echo '{"question": "Tôi muốn bay từ Hà Nội đến Paris vào ngày mai. 
 - **Spam requests vượt rate limit (quá 10 req/phút)**: Server từ chối và trả về mã lỗi `429 Too Many Requests`.
 
 ```bash
-for i in {1..15}; do    curl -X POST https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/ask     -H "X-API-Key: agent_5b2d8e4f1a7c93d6e5f8b0c2a4d6e8f0"     -H "Content-Type: application/json"     -d '{"user_id": "test_rate", "question": "test"}'; done 
+for i in {1..15}; do 
+  curl -X POST https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/ask \
+    -H "X-API-Key: agent_5b2d8e4f1a7c93d6e5f8b0c2a4d6e8f0" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id": "test_rate", "question": "test"}'
+done
 ```
 
 ![Screenshot](./images/test_api_spam_requests.png)
