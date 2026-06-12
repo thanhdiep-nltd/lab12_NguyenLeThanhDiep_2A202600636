@@ -46,8 +46,10 @@
 ```bash
 curl https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/health
 ```
-![Screenshot](./images/test_api_health_1.png.png)
-![Screenshot](./images/test_api_health_2.png.png)
+
+![Screenshot](./images/test_api_health_1.png)
+![Screenshot](./images/test_api_health_2.png)
+
 - **Screenshot Test API Question**: 
 ```bash
 echo '{"question": "Tôi muốn bay từ Hà Nội đến Paris vào ngày mai. Hãy tìm chuyến bay phù hợp, tìm khách sạn 4 sao tại điểm đến, kiểm tra thời tiết ở Paris ngày mai và tính tổng chi phí chuyến đi giúp tôi."}' | curl -X POST https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/ask \
