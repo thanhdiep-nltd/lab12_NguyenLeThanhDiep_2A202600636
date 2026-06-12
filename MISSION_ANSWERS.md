@@ -40,7 +40,8 @@
 
 ### Exercise 3.1: Railway deployment
 - **Public URL**: [https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/](https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/)
-- **Screenshot**: ![Screenshot](https://github.com/thanhdiep-nltd/lab12_NguyenLeThanhDiep_2A202600636/tree/main/images/railway_deployment_success.png)
+- **Screenshot**: 
+![Screenshot](https://github.com/thanhdiep-nltd/lab12_NguyenLeThanhDiep_2A202600636/tree/main/images/railway_deployment_success.png)
 
 ---
 
