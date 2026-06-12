@@ -40,9 +40,11 @@
 
 ### Exercise 3.1: Railway deployment
 - **Public URL**: [https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/](https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/)
-- **Screenshot**: 
+- **Screenshot Railway Dashboard**: 
 ![Screenshot](./images/screenshots_railway.png)
-
+- **Screenshot Test API Health Check**: 
+![Screenshot](./images/test_api_health_1.png.png)
+![Screenshot](./images/test_api_health_2.png.png)
 ---
 
 ## Part 4: API Security
