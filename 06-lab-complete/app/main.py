@@ -166,6 +166,7 @@ async def request_middleware(request: Request, call_next):
 class AskRequest(BaseModel):
     question: str = Field(..., min_length=1, max_length=2000,
                           description="Your question for the agent")
+    user_id: str | None = Field(default=None, description="Optional user ID for rate limiting")
 
 class AskResponse(BaseModel):
     question: str
@@ -202,8 +203,9 @@ async def ask_agent(
 
     **Authentication:** Include header `X-API-Key: <your-key>`
     """
-    # Rate limit per API key
-    check_rate_limit(_key[:8])  # use first 8 chars as key bucket
+    # Rate limit per user if user_id is provided, otherwise fallback to API key
+    rate_limit_key = body.user_id if body.user_id else _key[:8]
+    check_rate_limit(rate_limit_key)
 
     # Budget check
     input_tokens = len(body.question.split()) * 2
