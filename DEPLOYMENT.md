@@ -38,6 +38,12 @@ for i in {1..15}; do
     -d '{"user_id": "test_rate", "question": "test"}'
 done
 ```
+### Kết quả:
+
+```bash
+{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:54:58.549623+00:00"}{"question":"test","answer":"Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:54:59.197335+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:54:59.926581+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:01.098006+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:01.864457+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:02.629132+00:00"}{"question":"test","answer":"Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:03.637548+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:04.359586+00:00"}{"question":"test","answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:05.054689+00:00"}{"question":"test","answer":"Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic.","model":"gpt-4o-mini","timestamp":"2026-06-12T14:55:05.853924+00:00"}{"detail":"Rate limit exceeded: 10 req/min"}{"detail":"Rate limit exceeded: 10 req/min"}{"detail":"Rate limit exceeded: 10 req/min"}{"detail":"Rate limit exceeded: 10 req/min"}{"detail":"Rate limit exceeded: 10 req/min"}
+
+```
 
 ## Environment Variables Set
 - `PORT` (được gán tự động bởi Railway)
