@@ -47,7 +47,7 @@
 ## Part 3: Cloud Deployment
 
 ### Exercise 3.1: Railway deployment
-- **Public URL**: [https://day12ha-tang-cloudvadeployment-production.up.railway.app/](https://day12ha-tang-cloudvadeployment-production.up.railway.app/)
+- **Public URL**: [https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/](https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/)
 - **Screenshot**: Bạn có thể chụp màn hình giao diện Railway Dashboard chạy thành công và lưu vào thư mục `screenshots/` của repo.
 
 ---
@@ -71,3 +71,5 @@
 - **Health check**: `/health` (Liveness) trả về `200 OK` nếu ứng dụng hoạt động; `/ready` (Readiness) kiểm tra kết nối với Redis, nếu mất kết nối sẽ trả về `503 Service Unavailable`.
 - **Graceful shutdown**: Sử dụng context manager `lifespan` của FastAPI kết hợp bắt tín hiệu `SIGTERM`/`SIGINT`. Khi có tín hiệu dừng, server đổi `/ready` sang trả về 503 để Load Balancer không chuyển thêm request mới, đồng thời chờ cho số request đang xử lý (`in_flight_requests`) trở về 0 trước khi tắt hoàn toàn.
 - **Stateless design**: Lịch sử hội thoại được lưu trữ trên Redis bằng key `session:{session_id}` thay vì lưu tại RAM của instance. Do đó, request của người dùng có thể gửi đến bất cứ instance nào trong 3 instances mà Load Balancer phân chia, app vẫn lấy được lịch sử chat và xử lý chính xác.
+
+
