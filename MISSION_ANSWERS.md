@@ -42,6 +42,7 @@
 - **Public URL**: [https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/](https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/)
 - **Screenshot Railway Dashboard**: 
 ![Screenshot](./images/screenshots_railway.png)
+
 - **Screenshot Test API Health Check**: 
 ```bash
 curl https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/health
@@ -50,7 +51,22 @@ curl https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/healt
 ![Screenshot](./images/test_api_health_1.png)
 ![Screenshot](./images/test_api_health_2.png)
 
-- **Screenshot Test API Question**: 
+
+
+---
+
+## Part 4: API Security
+
+### Exercise 4.1-4.3: Test results
+- **Không gửi API Key**: Server từ chối và trả về mã lỗi `401 Unauthorized` (`detail: Invalid or missing API key`).
+
+![Screenshot](./images/test_api_no_key.png)
+
+- **Gửi sai API Key**: Server từ chối và trả về mã lỗi `401 Unauthorized`.
+
+![Screenshot](./images/test_api_wrong_key.png)
+
+- **Gửi đúng API Key**: Server xử lý thành công, trả về mã trạng thái `200 OK` cùng phản hồi của Agent.
 ```bash
 echo '{"question": "Tôi muốn bay từ Hà Nội đến Paris vào ngày mai. Hãy tìm chuyến bay phù hợp, tìm khách sạn 4 sao tại điểm đến, kiểm tra thời tiết ở Paris ngày mai và tính tổng chi phí chuyến đi giúp tôi."}' | curl -X POST https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/ask \
   -H "X-API-Key: agent_5b2d8e4f1a7c93d6e5f8b0c2a4d6e8f0" \
@@ -58,15 +74,15 @@ echo '{"question": "Tôi muốn bay từ Hà Nội đến Paris vào ngày mai. 
   -d @-
 ```
 ![Screenshot](./images/test_api_question_1.png)
----
 
-## Part 4: API Security
-
-### Exercise 4.1-4.3: Test results
-- **Không gửi API Key**: Server từ chối và trả về mã lỗi `401 Unauthorized` (`detail: Invalid or missing API key`).
-- **Gửi sai API Key**: Server từ chối và trả về mã lỗi `401 Unauthorized`.
-- **Gửi đúng API Key**: Server xử lý thành công, trả về mã trạng thái `200 OK` cùng phản hồi của Agent.
 - **Spam requests vượt rate limit (quá 10 req/phút)**: Server từ chối và trả về mã lỗi `429 Too Many Requests`.
+
+```bash
+for i in {1..15}; do    curl -X POST https://day12ha-tang-cloudvadeployment-production-f1a1.up.railway.app/ask     -H "X-API-Key: agent_5b2d8e4f1a7c93d6e5f8b0c2a4d6e8f0"     -H "Content-Type: application/json"     -d '{"user_id": "test_rate", "question": "test"}'; done 
+```
+
+![Screenshot](./images/test_api_spam_requests.png)
+
 
 ### Exercise 4.4: Cost guard implementation
 - **Giải pháp**: Mỗi user được cấp một hạn mức chi phí hàng ngày hoặc hàng tháng (ví dụ: $10/tháng). Khi nhận request, hệ thống sẽ ước lượng số token đầu vào/đầu ra, tính toán chi phí và cộng dồn vào Redis dưới key `budget:{user_id}:{month_key}`. Nếu chi phí cộng dồn vượt quá hạn mức, hệ thống sẽ từ chối bằng lỗi `503` (hoặc `402 Payment Required`).
